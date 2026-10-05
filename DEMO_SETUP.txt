@@ -1,0 +1,24 @@
+MEDTRACK - CARA MENJALANKAN
+
+1. Buka terminal di folder proyek.
+2. Buat virtual environment:
+   python -m venv venv
+3. Aktifkan:
+   venv\Scripts\activate
+4. Install:
+   pip install -r requirements.txt
+5. Jika db.sqlite3 dihapus:
+   python manage.py migrate
+   python manage.py seed_demo
+6. Buat akun admin:
+   python manage.py createsuperuser
+7. Jalankan:
+   python manage.py runserver
+
+Login:
+http://127.0.0.1:8000/login/
+
+Admin:
+http://127.0.0.1:8000/admin/
+
+Data demo sudah disediakan. Gunakan data fiktif saja.

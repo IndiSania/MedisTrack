@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{% block title %}MedTrack{% endblock %}</title>
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+<div class="app">
+<aside class="sidebar">
+  <div class="brand"><span class="brand-mark">M</span><div><strong>MedTrack</strong><small>Clinic Management</small></div></div>
+  <nav>
+    <a href="{% url 'dashboard' %}">Dashboard</a>
+    <a href="{% url 'patients' %}">Pasien</a>
+    <a href="{% url 'doctors' %}">Dokter</a>
+    <a href="{% url 'appointments' %}">Appointment</a>
+    <a href="{% url 'examinations' %}">Pemeriksaan</a>
+    <a href="{% url 'medicines' %}">Obat</a>
+    <a href="{% url 'reports' %}">Laporan</a>
+    <a href="/admin/">Admin Panel</a>
+  </nav>
+  <div class="sidebar-bottom">
+    <div class="user-mini">{{ request.user.username|default:"Admin" }}</div>
+    <a href="{% url 'logout' %}">Keluar</a>
+  </div>
+</aside>
+<main class="main">
+<header class="topbar"><div><span class="muted">Sistem Informasi Klinik</span><h1>{% block heading %}Dashboard{% endblock %}</h1></div><div class="avatar">{{ request.user.username|first|upper }}</div></header>
+{% if messages %}{% for message in messages %}<div class="alert">{{ message }}</div>{% endfor %}{% endif %}
+{% block content %}{% endblock %}
+</main>
+</div>
+</body>
+</html>

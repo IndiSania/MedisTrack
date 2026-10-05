@@ -1,0 +1,6 @@
+{% extends "base.html" %}{% block title %}Tambah Pasien - MedTrack{% endblock %}{% block heading %}Tambah Pasien{% endblock %}
+{% block content %}<section class="card form-card"><h2>Data Pasien Baru</h2><form method="post">{% csrf_token %}<div class="form-grid">
+<label>Nomor Rekam Medis<input name="medical_record" required placeholder="RM-0001"></label><label>Nama Lengkap<input name="name" required></label>
+<label>Tanggal Lahir<input type="date" name="birth_date" required></label><label>Jenis Kelamin<select name="gender"><option value="L">Laki-laki</option><option value="P">Perempuan</option></select></label>
+<label>Nomor Telepon<input name="phone"></label><label>Alamat<textarea name="address"></textarea></label>
+</div><div class="actions"><a class="btn" href="{% url 'patients' %}">Batal</a><button class="btn primary">Simpan Pasien</button></div></form></section>{% endblock %}

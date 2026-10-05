@@ -1,0 +1,19 @@
+{% extends "base.html" %}{% block title %}Dashboard - MedTrack{% endblock %}
+{% block content %}
+<div class="stats">
+<div class="stat"><span>Total Pasien</span><strong>{{ patient_count }}</strong><small>Data terdaftar</small></div>
+<div class="stat"><span>Kunjungan Hari Ini</span><strong>{{ today_count }}</strong><small>Appointment</small></div>
+<div class="stat"><span>Dokter Aktif</span><strong>{{ doctor_count }}</strong><small>Tenaga medis</small></div>
+<div class="stat"><span>Obat Aktif</span><strong>{{ medicine_count }}</strong><small>Inventaris</small></div>
+</div>
+<div class="grid-2">
+<section class="card"><div class="card-head"><div><h2>Aktivitas Kunjungan</h2><p>Ringkasan status appointment</p></div></div><canvas id="visitChart" height="190"></canvas></section>
+<section class="card"><div class="card-head"><div><h2>Appointment Terbaru</h2><p>Data kunjungan terbaru</p></div><a class="link" href="{% url 'appointments' %}">Lihat semua</a></div>
+<div class="table-wrap"><table><thead><tr><th>Pasien</th><th>Dokter</th><th>Status</th></tr></thead><tbody>{% for a in recent_appointments %}<tr><td><strong>{{ a.patient.name }}</strong><small>{{ a.date }} • {{ a.time }}</small></td><td>{{ a.doctor.name }}</td><td><span class="badge">{{ a.status }}</span></td></tr>{% empty %}<tr><td colspan="3">Belum ada appointment.</td></tr>{% endfor %}</tbody></table></div></section>
+</div>
+<script>
+const labels = [{% for x in visit_stats %}"{{ x.status }}",{% endfor %}];
+const values = [{% for x in visit_stats %}{{ x.total }},{% endfor %}];
+new Chart(document.getElementById('visitChart'), {type:'doughnut', data:{labels, datasets:[{data:values}]}, options:{plugins:{legend:{position:'bottom'}},cutout:'68%'}});
+</script>
+{% endblock %}

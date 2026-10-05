@@ -1,0 +1,2 @@
+{% extends "base.html" %}{% block title %}Dokter - MedTrack{% endblock %}{% block heading %}Data Dokter{% endblock %}
+{% block content %}<div class="cards">{% for d in doctors %}<div class="doctor card"><div class="doctor-icon">{{ d.name|first }}</div><div><h3>{{ d.name }}</h3><p>{{ d.specialty }}</p><small>{{ d.schedule|default:"Jadwal belum diatur" }}</small></div><span class="dot"></span></div>{% empty %}<div class="card">Belum ada data dokter.</div>{% endfor %}</div>{% endblock %}

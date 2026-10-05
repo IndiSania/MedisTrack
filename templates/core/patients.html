@@ -1,0 +1,4 @@
+{% extends "base.html" %}{% block title %}Pasien - MedTrack{% endblock %}{% block heading %}Data Pasien{% endblock %}
+{% block content %}<section class="card"><div class="card-head"><div><h2>Daftar Pasien</h2><p>Kelola data dan nomor rekam medis pasien.</p></div><a class="btn primary" href="{% url 'patient_add' %}">+ Tambah Pasien</a></div>
+<form class="search"><input name="q" value="{{ q }}" placeholder="Cari nama atau nomor rekam medis..."><button class="btn">Cari</button></form>
+<div class="table-wrap"><table><thead><tr><th>Rekam Medis</th><th>Nama</th><th>Tanggal Lahir</th><th>Jenis Kelamin</th><th>Telepon</th></tr></thead><tbody>{% for p in patients %}<tr><td><strong>{{ p.medical_record }}</strong></td><td>{{ p.name }}</td><td>{{ p.birth_date }}</td><td>{{ p.get_gender_display }}</td><td>{{ p.phone|default:"-" }}</td></tr>{% empty %}<tr><td colspan="5">Belum ada data.</td></tr>{% endfor %}</tbody></table></div></section>{% endblock %}

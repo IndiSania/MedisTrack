@@ -1,0 +1,7 @@
+{% extends "base.html" %}{% block title %}Buat Appointment - MedTrack{% endblock %}{% block heading %}Buat Appointment{% endblock %}
+{% block content %}<section class="card form-card"><h2>Appointment Baru</h2><form method="post">{% csrf_token %}<div class="form-grid">
+<label>Pasien<select name="patient" required>{% for p in patients %}<option value="{{ p.id }}">{{ p.medical_record }} — {{ p.name }}</option>{% endfor %}</select></label>
+<label>Dokter<select name="doctor" required>{% for d in doctors %}<option value="{{ d.id }}">{{ d.name }} — {{ d.specialty }}</option>{% endfor %}</select></label>
+<label>Tanggal<input type="date" name="date" required></label><label>Waktu<input type="time" name="time" required></label>
+<label class="wide">Keluhan<textarea name="complaint" placeholder="Keluhan utama pasien..."></textarea></label>
+</div><div class="actions"><a class="btn" href="{% url 'appointments' %}">Batal</a><button class="btn primary">Simpan Appointment</button></div></form></section>{% endblock %}

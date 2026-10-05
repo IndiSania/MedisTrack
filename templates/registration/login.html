@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="id"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Masuk - MedTrack</title><link rel="stylesheet" href="/static/css/style.css"></head>
+<body class="login-page">
+<div class="login-card">
+<div class="brand center"><span class="brand-mark">M</span><div><strong>MedTrack</strong><small>Clinic Management System</small></div></div>
+<h2>Selamat datang kembali</h2><p class="muted">Masuk untuk mengakses dashboard klinik.</p>
+<form method="post">{% csrf_token %}
+<label>Username<input type="text" name="username" required autofocus></label>
+<label>Password<input type="password" name="password" required></label>
+{% if form.errors %}<div class="error">Username atau password tidak sesuai.</div>{% endif %}
+<button class="btn primary full">Masuk ke Dashboard</button>
+</form>
+<div class="demo">Demo: buat akun dengan <code>python manage.py createsuperuser</code></div>
+</div></body></html>
